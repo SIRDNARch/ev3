@@ -10,14 +10,18 @@ import time
 
 light_s1 = LightSensor(INPUT_1) # sensor 1 for light intensity
 light_s1.MODE_REFLECT = "REFLECT"
+
 light_s2 = LightSensor(INPUT_2) # sensor 1 for light intensity
 light_s2.MODE_REFLECT = "REFLECT"
+
 usonic_s1 = UltrasonicSensor(INPUT_3)
 usonic_s1.MODE_REFLECT = "REFLECT"
+
 left_m = LargeMotor(OUTPUT_A)
 right_m = LargeMotor(OUTPUT_B) # left motor on PORT A right motor on PORT B
 tank_drive = MoveTank(OUTPUT_A,OUTPUT_B) # left motor on PORT A right motor on PORT B'''
-state = 0
+
+drehen = True
 
 def main():   
     a = 0.4 #constant for the accuracy 
@@ -41,19 +45,9 @@ def main():
 
         s1 = light_s1.reflected_light_intensity
         s2 = light_s2.reflected_light_intensity
-        
-        #if (s2-s1) > d:
-      
-        #    tank_drive.on_for_rotations(SpeedPercent(0),SpeedPercent(20), 1) # maybe change LEFT AND RIGHT
+        if (abs(s1-s2) < 0.05 && s1+s2 < 30):
+            tank_drive.off()
             
-        #elif (s1-s2) > d:
-         
-        #    tank_drive.on_for_rotations(SpeedPercent(20),SpeedPercent(0), 1) # maybe change LEFT AND RIGHT
-            
-        #elif (s2-s1) <= d or (s2-s1) * -1 <= d:
-        
-        #    tank_drive.on_for_rotations(SpeedPercent(5),SpeedPercent(5), 1)
-        
         if(s2-s1) > d:
             left_m.off()
             continue
@@ -65,19 +59,15 @@ def main():
 
 def ObjectDetection():
     if usonic_s1.distance_centimeters < 20:
-        if state == 0:
+        if drehen:
             left_m.polarity = "inversed"
             left_m.on_for_rotations(20, 1)
             right_m.on_for_rotations(20, 1)
-
-            left_m.polarity="normal"
-        #if state == 1:
-        #    tank_drive.off()
-        #    time.sleep(15)
-  
-        #if state == 2:
-        #    tank_drive.off()
-        #    time.sleep(15)
+            left_m.polarity = "normal"
+            drehen = False
+        else:
+            while usonic_s1.distance_centimeters < 20:
+                continue
 
 if __name__ == '__main__':
     main()
