@@ -58,6 +58,23 @@ def main():
             continue
         
         tank_drive.on(leftspeed, rightspeed)
+        
+def ObjectDetection() -> bool:
+    if usonic_s1.distance_centimeters < 20:
+        if state == 0:
+            tank_drive.on_for_rotations(50, 50, 4)
+            right_m.on_for_rotations(50, 4)
+            
+            continue
+        if state == 1:
+            tank_drive.off()
+            time.sleep(15)
+            continue
+        
+        if state == 2:
+            tank_drive.off()
+            time.sleep(15)
+            continue
             
 if __name__ == '__main__':
     main()
