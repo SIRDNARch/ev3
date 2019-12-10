@@ -22,6 +22,7 @@ right_m = LargeMotor(OUTPUT_B) # left motor on PORT A right motor on PORT B
 tank_drive = MoveTank(OUTPUT_A,OUTPUT_B) # left motor on PORT A right motor on PORT B'''
 
 drehen = True
+test_end = False
 
 def main():   
     a = 0.4 #constant for the accuracy 
@@ -47,7 +48,7 @@ def main():
         s1 = light_s1.reflected_light_intensity
         s2 = light_s2.reflected_light_intensity
         #STAY AT BLACK LINE 
-        if (end and s1 <= e and s2 <= e and abs(s1-s2) < 0.4:
+        if (test_end and s1 <= e and s2 <= e and abs(s1-s2) < 0.4:
             tank_drive.off()
             continue
             
@@ -70,6 +71,7 @@ def ObjectDetection():
             drehen = False
         else:
             while usonic_s1.distance_centimeters < 14:
+                test_end = True
                 continue
 
 if __name__ == '__main__':
