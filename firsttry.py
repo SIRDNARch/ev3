@@ -22,6 +22,7 @@ right_m = LargeMotor(OUTPUT_B) # left motor on PORT A right motor on PORT B
 tank_drive = MoveTank(OUTPUT_A,OUTPUT_B) # left motor on PORT A right motor on PORT B'''
 
 drehen = True
+test_end = False
 
 def main():   
     a = 0.4 #constant for the accuracy 
@@ -31,6 +32,7 @@ def main():
     while not Button().any():
         continue
     d = a * (light_s2.reflected_light_intensity - light_s1.reflected_light_intensity)
+    e = 2 + light_s1.reflected_light_intensity
     Sound().beep()
     #time.sleep(2)
     #Button has to be pressed to start the while loop with the follow line procedure
@@ -45,8 +47,10 @@ def main():
 
         s1 = light_s1.reflected_light_intensity
         s2 = light_s2.reflected_light_intensity
-        if (abs(s1-s2) < 0.05 && s1+s2 < 30):
+        #STAY AT BLACK LINE 
+        if (test_end and s1 <= e and s2 <= e and abs(s1-s2) < 0.4:
             tank_drive.off()
+            continue
             
         if(s2-s1) > d:
             left_m.off()
@@ -58,7 +62,7 @@ def main():
         tank_drive.on(leftspeed, rightspeed)
 
 def ObjectDetection():
-    if usonic_s1.distance_centimeters < 20:
+    if usonic_s1.distance_centimeters < 14:
         if drehen:
             left_m.polarity = "inversed"
             left_m.on_for_rotations(20, 1)
@@ -66,7 +70,8 @@ def ObjectDetection():
             left_m.polarity = "normal"
             drehen = False
         else:
-            while usonic_s1.distance_centimeters < 20:
+            while usonic_s1.distance_centimeters < 14:
+                test_end = True
                 continue
 
 if __name__ == '__main__':
