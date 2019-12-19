@@ -32,7 +32,6 @@ def main():
     up_threshold = abs((2*white+black)/3)
     low_threshold = abs((white+2*black)/3)
     max_speed = SpeedPercent(100)
-    l_speed = SpeedPercent(20)
 
     #follow till detecting object then turn
     while(not object_detection(20)):
