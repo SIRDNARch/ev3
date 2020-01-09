@@ -1,0 +1,34 @@
+2 Roboterkonzept
+Wir wollten einen Kompakten Roboter der mit nur einer Achse sehr lenkbar ist und hinten nur gestützt wird. Einfache Räder würden bei der Drehung den Roboter bremsen, weshalb wir welche gebraucht haben, die sich in alle Richtungen mit drehen. Jetzt funktionieren sie ähnlich wie bei einem Einkaufswagen.
+2.1
+Bei der Linienverfolgung haben wir die in der Vorlesung vorgeschlagene Differenz der Helligkeit  benutzt und somit die Licht- und Farbsensoren verwendet. Wir messen am Anfang die Helligkeit von schwarz und weiß und dann speichern wir die Differenz in einer Variablen. Während der Fahrt werden die neuen Messergebnisse mit der Differenz verglichen und dann gegebenen falls die Fahrbahn korrigiert. Zum Wenden benutzen wir den Ultraschallsensor, wenn dieser uns eine Distanz von unter 20cm zurückgibt, führt der Roboter eine Wendung durch.
+2.2
+Die Schranke erkennt der Roboter auch durch den Ultraschallsensor. Solange der Ultraschallsensor eine Distanz von unter 14cm misst, bleibt der Roboter stehen. Nachdem die Schranke sich öffnet fährt er weiter.
+2.3
+Der Klotz wird mit dem Ultraschallsensor erkannt, da wir keinen Port mehr für einen Tastsensor mehr frei hatten. Er wird solange geschoben bis der Ultraschall kein Hindernis mehr erkennt.
+2.4 
+Da wir die Differenz der Helligkeit nutzen, sollte der Roboter auch im Tunnel die Linie gut verfolgen können.
+2.5
+Bei der Steigung soll der Roboter versuchen schnell zum Ender der Steigung zu kommen um zu verhindern, dass er auf der Steigung stecken bleibt. Vielleicht versuchen wir auch mit Gewicht die Räder stärker auf die Strecke zu pressen. Mehr Gewicht würde beim Gefälle schaden und wir müssten noch Vorsichtiger sein. Durch die Sensoren vorne überschlägt er sich nicht beim Gefälle.
+2.6
+Der Ball wird mit dem Korb gehalten und später mit dem dritten Motor leicht heraus geworfen.
+
+3.
+Um die unterschiedlichen Anweisung zu befolgen die den gleichen Auslöser haben zum Beispiel einen gewissen Abstand ist die Reihenfolge fest programmiert. Beim ersten erkennen eines Hindernis wendet der Roboter, beim Zweiten bleibt er stehen etc. Durch dieses Vorgehen ist der Roboter sehr unflexibel, aber da die Strecke eine feste Abfolge der Hindernisse hat und wir nur 4 Ports für Sensoren haben ist dies der einfachste Weg  fest zu halten in welchem Abschnitt sich der Roboter befinden und auf welches Hindernis er achten muss. Wie schon in 2.1 erwähnt benutzen wir die Differenz der beiden Lichtsensoren.
+ Zuerst messen wir Links die Helligkeit von Schwarz und Rechts die Helligkeit von Weiß, diese Differenz multiplizieren wir mit einer beliebigen Zahl zwischen 0 und 1 um diesen Wert dann in d zu speichern.
+Dann beginnt der Roboter sich zu bewegen und die Lichtsensoren erkennen neue Werter.
+Sollte Links und Rechts ungefährt der gleiche Wert gemessen werden fährt er gerade aus, da die neu Berechnete Differenz nicht größer als  D ist.
+4.
+Der Roboter kann der Linie folgen, Hindernisse und Unterbrechungen der schwarzen Linie erkennen. Er kann Wenden, an der Schranke stehen bleiben und das Ende erkennen um den Ball ab zu liefern. Während des Meilensteins konnte er der Linie immer fehlerfrei folgen und alle Aufgaben wurden gemeistert.
+5.
+Beim Wenden hatten wir zuerst das Problem, das er sich nicht weit genug gedreht hat und dadurch die Linie nicht wieder gefunden hat außerdem hat er manchmal die Wand nicht erkannt, wir mussten den Ultraschalsensor neu ausrichten. Die 90° Kurven hat er beim Testen nur jedes 2-3 Mal geschafft aber nach Anpassungen im Code schafft er es nun fast immer. Beim Programmieren des EV3 mit Python gab es ab und zu Schwierigkeiten mit dem EV3 Browser wenn man die Datei hochladen wollte. 
+6.
+Wir müssen noch sicherstellen, dass der Roboter die Barcodes richtig erkennt und dann sauber die Aufgaben ausführt. Die Steigung und das Gefälle bereiten noch ab und zu Schwierigkeiten und benötigen noch Ausbesserung. Beim Entladen des Balls brauchen wir noch eine Elegante Lösung. Der Grundaufbau muss vielleicht nochmal geändert werden damit alle Aufgaben absolviert werden können.
+7.
+Jeder hat sich Gedanken über die Aufgaben gemacht und Vorschläge eingebracht.
+Rico hat hauptsächlich den Python Code geschrieben.
+Thanh Son hat gebaut und geholfen zu programmieren
+Daniel ?
+Julian ist raus?
+
+Die Bilder als nah aufnahmen also von den Sensoren wenn ich sie erwähne? dann noch von den Rädern also so etwas wage alles?
